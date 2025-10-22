@@ -1,2 +1,4 @@
-MyPortfolio
-This is my first front end portfolio using react.
+
+My portfolio
+
+This is my first portfolio using React
