@@ -1,0 +1,55 @@
+/* vibrant, smooth animated custom properties for two independent color cycles */
+
+/* root holds both variables and runs two animations simultaneously */
+:root {
+    --textColor: hsl(0 100% 50%);    /* primary (will be overridden by animation) */
+    --altTextColor: hsl(320 95% 55%);/* secondary (will be overridden by animation) */
+
+    /* two animations applied to :root (one for each custom property) */
+    animation: cycleTextColor 20s linear infinite,
+                         cycleAltTextColor 20s linear infinite;
+}
+
+/* smooth, vibrant hues for the primary color (cycles through a rainbow) */
+@keyframes cycleTextColor {
+    0%    { --textColor: hsl(0, 100%, 65%); } /* red */
+    16.666% { --textColor: hsl(30  95% 50%); } /* orange */
+    33.333% { --textColor: hsl(60, 69%, 45%); } /* yellow */
+    50%   { --textColor: hsl(140 60% 45%); } /* green (slightly softer) */
+    66.666% { --textColor: hsl(210 100% 55%); } /* blue */
+    83.333% { --textColor: hsl(260 90% 55%); } /* indigo */
+    100%  { --textColor: hsl(290 95% 60%); } /* violet */
+}
+
+/* a different vibrant palette for the secondary color (contrast + pop) */
+@keyframes cycleAltTextColor {
+    0%   { --altTextColor: hsl(320 95% 55%); } /* hot pink */
+    20%  { --altTextColor: hsl(280 95% 55%); } /* vivid purple */
+    40%  { --altTextColor: hsl(200 95% 50%); } /* electric cyan */
+    60%  { --altTextColor: hsl(160 85% 45%); } /* bright teal */
+    80%  { --altTextColor: hsl(40  100% 50%); } /* vibrant gold */
+    100% { --altTextColor: hsl(20  100% 50%); } /* deep orange-red */
+}
+
+/* apply the variables where needed in your app */
+/* default text uses the primary animated color */
+body, .App {
+    color: var(--textColor);
+}
+
+/* use this class when you want the alternate animated color */
+body .altText {
+    color: var(--altTextColor);
+}
+
+/* optional: if you prefer a subtle softening between changes,
+     uncomment the following to add a small transition on elements
+     that use the custom properties (note: keyframes already interpolate) */
+
+body, .App, body .altText {
+    transition: color 0.4s ease;
+}
+
+.body, a, button , p, h1, h2, h3, h4, h5, h6 {
+    cursor: pointer;
+}
